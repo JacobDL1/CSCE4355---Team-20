@@ -69,6 +69,10 @@ Orders Schema:
 - exp_utilities_name
 - exp_vendors_name
 
+## Backups
+
+The backups.txt file outlines what commands to use for different backup-related scenarios. we use pg_dump to create backups and pg_restore to restore the database to a backup.
+
 ## Repository Structure
 
-All SQL files are stored in the SQL folder, and the README.md contains instructions for running the the files in the SQL folder.
+All SQL files are stored in the SQL folder, and the backup text file is stored in the backup folder. The README.md contains instructions for running the the files in the SQL folder.
