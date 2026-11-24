@@ -1,0 +1,9 @@
+Backup Process:
+pg_dump -U postgres -F c -f small_business_backup.dump small_business
+
+Disaster:
+psql -U postgres -c "DROP DATABASE small_business;"
+
+Restore Process:
+psql -U postgres -c "CREATE DATABASE small_business;"
+pg_restore -U postgres -d small_business small_business_backup.dump
