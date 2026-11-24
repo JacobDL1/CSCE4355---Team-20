@@ -26,6 +26,7 @@ psql -U postgres -c "CREATE DATABASE small_business;"
 ```bash
 psql -U postgres -d small_business -f sql/schemas.sql
 psql -U postgres -d small_business -f sql/tables.sql
+psql -U postgres -d small_business -f sql/data.sql
 psql -U postgres -d small_business -f sql/roles.sql
 psql -U postgres -d small_business -f sql/indexes.sql
 ```
