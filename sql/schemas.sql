@@ -1,0 +1,2 @@
+CREATE SCHEMA expenses;
+CREATE SCHEMA orders;
