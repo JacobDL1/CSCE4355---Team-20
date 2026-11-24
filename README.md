@@ -10,15 +10,25 @@ Jacob Lamb
 This project aims to help small business's track order and expenses data by providing a database to replace the conventional use of spreadsheets in data tracking.
 Our database implements schemas, tables, RBAC, indexes, and backups to efficiently support data storage and retrieval.
 
-## Database Setup
+## Database Setup and Execution Instructions
 
-1. Connect to PostgreSQL.
-2. Create a database named small_business.
-3. Connect to the small_business database.
-4. Run sql/schemas.sql to create the two schemas.
-5. Run sql/tables.sql to create the eight tables.
-6. Run sql/roles to create the three roles.
-7. Run sql/index to create the fourteen indexes.
+1. Clone the Repository:
+```bash
+git clone https://github.com/JacobDL1/CSCE4355---Team-20.git
+```
+
+2. After navigating to the folder where the repo was cloned to, create the database:
+```bash
+psql -U postgres -c "CREATE DATABASE small_business;"
+```
+
+3. Run the following commands to execute the SQL files:
+```bash
+psql -U postgres -d small_business -f sql/schemas.sql
+psql -U postgres -d small_business -f sql/tables.sql
+psql -U postgres -d small_business -f sql/roles.sql
+psql -U postgres -d small_business -f sql/indexes.sql
+```
 
 ## Schemas
 
