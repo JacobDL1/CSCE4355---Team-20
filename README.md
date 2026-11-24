@@ -29,7 +29,6 @@ psql -U postgres -d small_business -f sql/tables.sql
 psql -U postgres -d small_business -f sql/data.sql
 psql -U postgres -d small_business -f sql/roles.sql
 psql -U postgres -d small_business -f sql/indexes.sql
-psql -U postgres -d small_business -f sql/data.sql
 ```
 
 ## Schemas
