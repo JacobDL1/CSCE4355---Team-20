@@ -26,7 +26,7 @@ git clone https://github.com/JacobDL1/CSCE4355---Team-20.git
 cd CSCE4355---Team-20
 ```
 
-2. After navigating to the folder where the repo was cloned to, create the database:
+2. Create the database:
 ```bash
 psql -U postgres -c "CREATE DATABASE small_business;"
 ```
@@ -42,7 +42,7 @@ psql -U postgres -d small_business -f sql/roles.sql
 psql -U postgres -d small_business -f sql/indexes.sql
 ```
 
-4. Navigate to your PostgreSQL installation, then connect to the database
+4. Connect to the database
 ```bash
 psql -U postgres -d small_business
 ```
