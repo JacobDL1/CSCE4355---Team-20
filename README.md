@@ -112,6 +112,8 @@ Note: All of these scenarios assume that the user has followed the setup and exe
 Indexes:
 - Before and after using EXPLAIN ANALYZE, comparing statistics with a particular focus on execution time and buffers hit.
 ```SQL
+RESET ROLE;
+
 DROP INDEX orders.ord_date;
 
 EXPLAIN (ANALYZE, BUFFERS)
@@ -122,6 +124,17 @@ ANALYZE orders.orders;
 
 EXPLAIN (ANALYZE, BUFFERS)
 SELECT * FROM orders.orders WHERE order_date BETWEEN '2024-01-01' AND '2024-03-01';
+
+DROP INDEX expenses.exp_payroll_name;
+
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT * FROM expenses.payroll WHERE employee_name = 'Employee 1';
+
+CREATE INDEX exp_payroll_name ON expenses.payroll (employee_name);
+ANALYZE expenses.payroll;
+
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT * FROM expenses.payroll WHERE employee_name = 'Employee 1';
 ```
 
 Backups:
@@ -139,6 +152,11 @@ DELETE FROM expenses.payroll WHERE payroll_id = 1;
 -- Succeed
 SELECT * FROM expenses.payroll LIMIT 5;
 
+BEGIN;
+INSERT INTO expenses.payroll (payroll_id, employee_name, amount, payment_date) VALUES
+(501, 'Employee 501', 2500.00, '2026-11-27');
+UPDATE expenses.payroll SET amount = 5000.00 WHERE payroll_id = 1;
+ROLLBACK;
 
 SET ROLE sales;
 
@@ -149,6 +167,12 @@ DELETE FROM orders.order_items WHERE order_item_id = 1;
 -- Succeed
 SELECT * FROM orders.orders LIMIT 5;
 
+BEGIN;
+INSERT INTO orders.orders (order_id, customer_id, order_date) VALUES
+(10001, 500, '2026-11-27');
+UPDATE orders.orders SET customer_id = 500 WHERE order_id = 10000;
+ROLLBACK;
+
 SET ROLE owner;
 
 -- Can run any command
@@ -158,6 +182,12 @@ SELECT * FROM expenses.payroll LIMIT 5;
 BEGIN;
 DELETE FROM expenses.payroll WHERE payroll_id = 1;
 DELETE FROM orders.order_items WHERE order_item_id = 1;
+INSERT INTO expenses.payroll (payroll_id, employee_name, amount, payment_date) VALUES
+(501, 'Employee 501', 2500.00, '2026-11-27');
+UPDATE expenses.payroll SET amount = 5000.00 WHERE payroll_id = 1;
+INSERT INTO orders.orders (order_id, customer_id, order_date) VALUES
+(10001, 500, '2026-11-27');
+UPDATE orders.orders SET customer_id = 500 WHERE order_id = 10000;
 ROLLBACK;
 ```
 
