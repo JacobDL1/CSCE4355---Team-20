@@ -16,6 +16,7 @@ Our database implements schemas, tables, RBAC, indexes, and backups to efficient
 - Updated version of PostgreSQL (version 18.0 or newer, tested on 18.0)
 - Know your postgres user login
 - Git locally installed
+- Correct PATH setup for PostgreSQL (A path to PostgreSQL's bin folder must be in your system variables)
 
 ## Database Setup and Execution Instructions
 
@@ -29,6 +30,8 @@ cd CSCE4355---Team-20
 ```bash
 psql -U postgres -c "CREATE DATABASE small_business;"
 ```
+
+Side note: If psql commands fail, then make sure to add a PATH to PostgreSQL's bin folder in your system variables. The default file path to add to system variables is "C:\Program Files\PostgreSQL\18\bin".
 
 3. Run the following commands to execute the SQL files:
 ```bash
