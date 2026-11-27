@@ -27,3 +27,6 @@ CREATE INDEX exp_payroll_name ON expenses.payroll (employee_name);
 CREATE INDEX exp_rent_name ON expenses.rent (property_name);
 CREATE INDEX exp_utilities_name ON expenses.utilities (utility_type);
 CREATE INDEX exp_vendors_name ON expenses.vendors (vendor_name);
+
+-- Update planner statistics after index creation
+ANALYZE;
